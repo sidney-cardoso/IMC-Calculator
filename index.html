@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="./styles/style.css" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <main class="container">
+            <h1>Calculadora de IMC</h1>
+            <table>
+                <h2>Tabela do IMC</h2>
+                <thead>
+                    <th>IMC</th>
+                    <th>Resultado</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Abaixo de 18.5</td>
+                        <td>Abaixo do peso</td>
+                    </tr>
+                    <tr>
+                        <td>Entre 18.5 e 24.9</td>
+                        <td>Peso normal</td>
+                    </tr>
+                    <tr>
+                        <td>Entre 25 e 29.9</td>
+                        <td>Sobrepeso</td>
+                    </tr>
+                    <tr>
+                        <td>Entre 30 e 34.9</td>
+                        <td>Obesidade grau I</td>
+                    </tr>
+                    <tr>
+                        <td>Entre 35 e 39.9</td>
+                        <td>Obesidade grau II</td>
+                    </tr>
+                    <tr>
+                        <td>Acima de 40</td>
+                        <td>Obesidade grau III</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <form action="">
+                <label for="height">Altura (m)</label>
+                <input type="text" id="height" />
+
+                <label for="weight">Peso:</label>
+                <input type="text" id="weight" />
+                <button type="submit">Calcular</button>
+            </form>
+            <div id="result"></div>
+        </main>
+
+        <script src="./scripts/script.js"></script>
+    </body>
+</html>
