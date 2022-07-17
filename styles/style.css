@@ -65,3 +65,18 @@ form button:active {
     background-color: var(--text-color);
     color: var(--green);
 }
+
+.success {
+    background-color: rgb(19, 247, 7);
+    color: var(--text-color);
+    font-weight: 700;
+    padding: 10px;
+    border-radius: 4px;
+}
+.error {
+    background-color: rgb(255, 0, 0);
+    color: var(--text-color);
+    font-weight: 700;
+    padding: 10px;
+    border-radius: 4px;
+}

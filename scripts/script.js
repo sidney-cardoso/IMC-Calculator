@@ -1,35 +1,58 @@
 const form = document.querySelector('form')
-const result = document.querySelector('#result')
 
-const imcResult = [
-    'Abaixo do peso',
-    'Peso normal',
-    'Sobrepeso',
-    'Obesidade grau I',
-    'Obesidade grau II',
-    'Obesidade grau III'
-]
-
-const calculateIMC = event => {
+form.addEventListener('submit', event => {
     event.preventDefault()
 
-    const height = form.querySelector('#height').value
-    const weight = form.querySelector('#weight').value
+    const height = Number(event.target.height.value)
+    const weight = Number(event.target.weight.value)
 
-    const imc = (weight / (height * height)).toFixed(1)
+    const imc = getIMC(weight, height)
+    const imcValue = getIMCValue(imc)
 
-    if (imc < 18.5) {
-        result.innerHTML = `Seu imc é de ${imc}, você está ${imcResult[0]}`
-    } else if (imc >= 18.5 && imc < 24.9) {
-        result.innerHTML = `Seu imc é de ${imc}, você está com o ${imcResult[1]}`
-    } else if (imc >= 25 && imc < 29.9) {
-        result.innerHTML = `Seu imc é de ${imc}, você está com ${imcResult[2]}`
-    } else if (imc >= 30 && imc < 34.9) {
-        result.innerHTML = `Seu imc é de ${imc}, você está com ${imcResult[3]}`
-    } else if (imc >= 35 && imc < 39.9) {
-        result.innerHTML = `Seu imc é de ${imc}, você está com ${imcResult[4]}`
-    } else if (imc >= 40) {
-        result.innerHTML = `Seu imc é de ${imc}, você está com ${imcResult[5]}`
+    if (height === '' || height === 0) {
+        setResult('Por favor, informe sua altura', false)
+        return
+    } else if (weight === '' || weight === 0) {
+        setResult('Por favor, informe seu peso', false)
+        return
+    }
+    setResult(`IMC: ${imc} - (${imcValue})`, true)
+})
+const getIMC = (weight, height) => {
+    const imc = (weight / (height * height)).toFixed(2)
+    return imc
+}
+const getIMCValue = imc => {
+    const value = [
+        'Abaixo do peso',
+        'Peso normal',
+        'Sobrepeso',
+        'Obesidade grau I',
+        'Obesidade grau II',
+        'Obesidade grau III'
+    ]
+    if (imc > 39.9) return value[5]
+
+    if (imc > 34.9) return value[4]
+
+    if (imc > 29.9) return value[3]
+
+    if (imc > 24.9) return value[2]
+
+    if (imc > 18.4) return value[1]
+
+    if (imc < 18.5) return value[0]
+}
+
+const setResult = (message, isValid) => {
+    const result = document.querySelector('#result')
+    const paragraph = document.createElement('p')
+    paragraph.innerHTML = message
+    result.appendChild(paragraph)
+
+    if (isValid) {
+        result.classList.add('success')
+    } else {
+        result.classList.add('error')
     }
 }
-form.addEventListener('submit', calculateIMC)
